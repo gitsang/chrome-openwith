@@ -80,12 +80,34 @@ function openWithExternalProgram(url) {
   // 替换命令中的{url}占位符
   const command = userConfig.command.replace('{url}', url);
   
-  // 在这里，我们只能模拟执行外部命令
-  // 实际上，Chrome扩展无法直接执行系统命令
-  // 需要使用Native Messaging与本地应用程序通信
-  // 或者使用其他方式，如自定义协议处理程序
-  
-  // 这里我们只是打开一个新标签页，显示要执行的命令
+  // 尝试使用Native Messaging与本地应用程序通信
+  try {
+    chrome.runtime.sendNativeMessage(
+      'com.example.openwith',  // 本地应用程序的ID
+      { command: command, url: url },
+      function(response) {
+        console.log('收到本地应用程序的响应:', response);
+        
+        if (response && response.success) {
+          console.log('命令执行成功');
+          // 可以在这里添加成功执行的提示
+        } else {
+          console.error('命令执行失败:', response ? response.error : '未知错误');
+          // 如果Native Messaging失败，回退到显示命令页面
+          fallbackToCommandPage(command, url);
+        }
+      }
+    );
+  } catch (e) {
+    console.error('Native Messaging错误:', e);
+    // 如果出现错误，回退到显示命令页面
+    fallbackToCommandPage(command, url);
+  }
+}
+
+// 回退到显示命令页面
+function fallbackToCommandPage(command, url) {
+  console.log('回退到显示命令页面');
   chrome.tabs.create({
     url: 'command.html?command=' + encodeURIComponent(command) + '&url=' + encodeURIComponent(url)
   });

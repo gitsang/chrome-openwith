@@ -31,6 +31,7 @@
     "contextMenus",
     "storage",
     "tabs",
+    "nativeMessaging",
     "<all_urls>"
   ],
   "options_ui": {
