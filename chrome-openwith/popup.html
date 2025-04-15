@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Open With External Program</title>
+  <style>
+    body {
+      font-family: 'Microsoft Yahei', Arial, sans-serif;
+      width: 300px;
+      padding: 15px;
+      margin: 0;
+      color: #333;
+    }
+    h1 {
+      font-size: 18px;
+      margin-top: 0;
+      color: #4285f4;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+    .section {
+      margin-bottom: 15px;
+    }
+    .section-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .config-item {
+      margin-bottom: 8px;
+      display: flex;
+    }
+    .config-label {
+      font-weight: bold;
+      width: 80px;
+      flex-shrink: 0;
+    }
+    .config-value {
+      flex-grow: 1;
+      word-break: break-all;
+    }
+    .button {
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 4px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .button:hover {
+      background-color: #3367d6;
+    }
+    .shortcut-keys {
+      display: flex;
+      gap: 5px;
+    }
+    .key {
+      background-color: #f1f1f1;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      padding: 2px 5px;
+      font-family: monospace;
+      font-size: 12px;
+    }
+    .status {
+      font-size: 12px;
+      color: #666;
+      margin-top: 10px;
+      font-style: italic;
+    }
+    .filter-list {
+      max-height: 80px;
+      overflow-y: auto;
+      border: 1px solid #eee;
+      border-radius: 3px;
+      padding: 5px;
+      margin-top: 5px;
+      background-color: #f9f9f9;
+    }
+    .filter-item {
+      padding: 3px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 12px;
+    }
+    .filter-item:last-child {
+      border-bottom: none;
+    }
+    .no-filters {
+      font-style: italic;
+      color: #999;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Open With External Program</h1>
+  
+  <div class="section">
+    <div class="section-title">当前配置</div>
+    
+    <div class="config-item">
+      <div class="config-label">命令：</div>
+      <div class="config-value" id="current-command">-</div>
+    </div>
+    
+    <div class="config-item">
+      <div class="config-label">默认打开：</div>
+      <div class="config-value" id="default-open">-</div>
+    </div>
+    
+    <div class="config-item">
+      <div class="config-label">快捷键：</div>
+      <div class="config-value">
+        <div class="shortcut-keys" id="shortcut-keys">-</div>
+      </div>
+    </div>
+    
+    <div class="config-item">
+      <div class="config-label">URL过滤：</div>
+      <div class="config-value">
+        <div id="filter-count">-</div>
+        <div class="filter-list" id="filter-list">
+          <!-- 过滤规则列表将在这里动态生成 -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <button id="open-options" class="button">打开选项</button>
+  <div class="status">提示：右键点击链接，选择"使用外部程序打开链接"</div>
+  
+  <script src="js/popup.js"></script>
+</body>
+</html>

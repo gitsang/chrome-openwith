@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Open With External Program - 图标生成器</title>
+  <style>
+    body {
+      font-family: 'Microsoft Yahei', Arial, sans-serif;
+      margin: 20px;
+      color: #333;
+    }
+    h1 {
+      color: #333;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .icon-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .icon {
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(135deg, #4285f4, #34a853);
+      position: relative;
+      overflow: hidden;
+    }
+    .icon::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60%;
+      height: 60%;
+      background-color: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+    }
+    .icon-16 {
+      width: 16px;
+      height: 16px;
+      font-size: 8px;
+    }
+    .icon-19 {
+      width: 19px;
+      height: 19px;
+      font-size: 10px;
+    }
+    .icon-38 {
+      width: 38px;
+      height: 38px;
+      font-size: 16px;
+    }
+    .icon-48 {
+      width: 48px;
+      height: 48px;
+      font-size: 20px;
+    }
+    .icon-128 {
+      width: 128px;
+      height: 128px;
+      font-size: 48px;
+    }
+    .instructions {
+      margin-top: 30px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      border-left: 4px solid #4285f4;
+    }
+    .instructions h2 {
+      margin-top: 0;
+      color: #4285f4;
+    }
+    .instructions ol {
+      padding-left: 20px;
+    }
+    .instructions li {
+      margin-bottom: 10px;
+    }
+    .code {
+      background-color: #f0f0f0;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>Open With External Program - 图标生成器</h1>
+  
+  <div class="container">
+    <div class="icon-container">
+      <div class="icon icon-16">O</div>
+      <div>16x16</div>
+    </div>
+    
+    <div class="icon-container">
+      <div class="icon icon-19">O</div>
+      <div>19x19</div>
+    </div>
+    
+    <div class="icon-container">
+      <div class="icon icon-38">O</div>
+      <div>38x38</div>
+    </div>
+    
+    <div class="icon-container">
+      <div class="icon icon-48">O</div>
+      <div>48x48</div>
+    </div>
+    
+    <div class="icon-container">
+      <div class="icon icon-128">O</div>
+      <div>128x128</div>
+    </div>
+  </div>
+  
+  <div class="instructions">
+    <h2>如何创建图标文件</h2>
+    <ol>
+      <li>使用截图工具截取上面的图标，并保存为PNG格式。</li>
+      <li>将图标文件保存到以下路径：
+        <ul>
+          <li><span class="code">img/icon16.png</span> (16x16)</li>
+          <li><span class="code">img/icon19.png</span> (19x19)</li>
+          <li><span class="code">img/icon38.png</span> (38x38)</li>
+          <li><span class="code">img/icon48.png</span> (48x48)</li>
+          <li><span class="code">img/icon128.png</span> (128x128)</li>
+        </ul>
+      </li>
+      <li>或者，您可以使用自己设计的图标，只需确保尺寸正确并保存到相应路径即可。</li>
+    </ol>
+  </div>
+  
+  <script>
+    // 可以添加一些JavaScript代码来增强图标生成功能
+    // 例如，允许用户自定义颜色、形状等
+  </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>使用外部程序打开链接</title>
+  <style>
+    body {
+      font-family: 'Microsoft Yahei', Arial, sans-serif;
+      margin: 20px;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+    .url {
+      word-break: break-all;
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-radius: 3px;
+      border: 1px solid #ddd;
+      margin: 10px 0;
+    }
+    .command {
+      word-break: break-all;
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-radius: 3px;
+      border: 1px solid #ddd;
+      font-family: Consolas, monospace;
+      margin: 10px 0;
+    }
+    .note {
+      color: #666;
+      font-size: 14px;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #ffffd9;
+      border-left: 4px solid #ffeb3b;
+    }
+    .button {
+      display: inline-block;
+      background-color: #4285f4;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #3367d6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>使用外部程序打开链接</h1>
+    
+    <h2>链接地址：</h2>
+    <div class="url" id="url"></div>
+    
+    <h2>执行命令：</h2>
+    <div class="command" id="command"></div>
+    
+    <div class="note">
+      <p><strong>注意：</strong>Chrome扩展无法直接执行系统命令。请复制上面的命令，并在系统命令行中执行。</p>
+      <p>您可以在选项页面中配置自定义命令。</p>
+    </div>
+    
+    <button class="button" id="copy-command">复制命令</button>
+    <button class="button" id="open-options">打开选项</button>
+  </div>
+
+  <script>
+    // 获取URL参数
+    function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+    
+    // 显示命令和URL
+    document.getElementById('url').textContent = getUrlParameter('url');
+    document.getElementById('command').textContent = getUrlParameter('command');
+    
+    // 复制命令到剪贴板
+    document.getElementById('copy-command').addEventListener('click', function() {
+      var commandText = document.getElementById('command').textContent;
+      navigator.clipboard.writeText(commandText).then(function() {
+        alert('命令已复制到剪贴板！');
+      }, function(err) {
+        alert('复制失败: ' + err);
+      });
+    });
+    
+    // 打开选项页面
+    document.getElementById('open-options').addEventListener('click', function() {
+      chrome.runtime.openOptionsPage();
+    });
+  </script>
+</body>
+</html>
